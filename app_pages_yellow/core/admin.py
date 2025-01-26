@@ -1,6 +1,8 @@
 from django.contrib import admin
-from .models import  Proveedor, ImagenProveedor, Categoria, CategoriaSubcategoria, Subcategoria, ProveedorCategoriaSubcategoria
+from .models import  (Proveedor, ImagenProveedor, Categoria, CategoriaSubcategoria, Subcategoria,
+                      ProveedorCategoriaSubcategoria, Provincia, ProveedorProvincia, EnlaceProveedor)
 
 admin.site.register([
-     Proveedor, ImagenProveedor, Categoria, CategoriaSubcategoria, Subcategoria, ProveedorCategoriaSubcategoria
+     Proveedor, ImagenProveedor, Categoria, CategoriaSubcategoria, Subcategoria, ProveedorCategoriaSubcategoria, Provincia,
+    ProveedorProvincia, EnlaceProveedor
 ])

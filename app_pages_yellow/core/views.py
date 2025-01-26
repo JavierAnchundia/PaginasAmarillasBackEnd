@@ -11,7 +11,7 @@ from core import api
 
 
 @api_view(["GET", "POST"])
-# @permission_classes([IsAuthenticated])
+# @permission_classes([IsAutphenticated])
 def proveedorActivoAll_api_view(request):
 
     if request.method == "GET":
@@ -144,6 +144,79 @@ def crearProveedorCategoriaSubcategoria_api_view(request):
         resp = api.create_proveedorCategoriaSubcategoria(request.data)
         return Response(resp)
 
+@api_view([ "POST"])
+# @permission_classes([IsAuthenticated])
+def crearProveedorProvinciasa_api_view(request):
+
+    if request.method == "POST":
+        resp = api.create_proveedorProvincia(request.data)
+        return Response(resp)
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
+
+
+@api_view(["GET"])
+def provincias_api_view(request):
+
+    if request.method == "GET":
+        resp = api.getProvincias()
+        return Response(resp)
+
+@api_view(["PUT"])
+def proveedorProvincia_api_view(request, pk ):
+    print("Hola  dentro del Delete 2")
+
+    #This method will delete the registers of ProveedorProvincia that coincides with the list of provinces and the provider id
+    if request.method == "PUT":
+        resp = api.deleteProveedorProvincia(request.data, pk)
+
+        if resp:
+            print("Hola  dentro del Delete")
+            return Response(
+                {"msg": "Se ha eliminado las provincias del Proveedor"},
+                status=status.HTTP_201_CREATED,
+            )
+
+        return Response(
+            {"msg": "No se ha podido eliminar las provincias del proveedor"},
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+
+@api_view(["PUT"])
+def proveedorEnlacesDelete_api_view(request, pk ):
+    print("Hola  dentro del Delete Enlaces")
+
+    #This method will delete the registers of ProveedorProvincia that coincides with the list of provinces and the provider id
+    if request.method == "PUT":
+        resp = api.deleteProveedorEnlaces(request.data, pk)
+
+        if resp:
+            print("Hola  dentro del Delete")
+            return Response(
+                {"msg": "Se han eliminado los enlaces seleccionados del Proveedor"},
+                status=status.HTTP_201_CREATED,
+            )
+
+        return Response(
+            {"msg": "No se ha podido eliminar los enlaces del proveedor"},
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+
+@api_view(["GET"])
+def enlaces_api_view(request):
+
+    if request.method == "GET":
+        resp = api.getAllEnlaces()
+        return Response(resp)
+
+
+@api_view([ "PUT"])
+# @permission_classes([IsAuthenticated])
+def crearProveedorEnlaces_api_view(request, pk):
+
+    if request.method == "PUT":
+        resp = api.create_proveedorEnlaces(request.data, pk)
+        return Response(resp)

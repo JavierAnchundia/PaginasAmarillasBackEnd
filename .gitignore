@@ -2,4 +2,6 @@
 .idea
 *.pyc
 *.pyc
+app_pages_yellow/media/proveedor/
 ServidorMapaVirtual/ServidorMapaVirtual/.env
+venv/
