@@ -67,7 +67,7 @@ class ImagenProveedor(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
     image_path = models.ImageField(upload_to='proveedor/')
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE)
-    
+
     def __str__(self) -> str:
         return f"{self.proveedor.razon_social} -> {self.image_path}"
 
@@ -75,10 +75,19 @@ class ImagenProveedor(models.Model):
         return self.provincia.all()
 
 
+class ImagenTemporalProveedor(models.Model):
+    id = models.AutoField(primary_key=True, unique=True)
+    image_path = models.ImageField(upload_to='proveedorTemporal/')
+    proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return f"{self.proveedor.razon_social} -> {self.image_path}"
+
+
 class Categoria(models.Model):
     nombre = models.CharField(max_length=200)
     image_path = models.ImageField(upload_to='categoria/')
-    
+
     def __str__(self) -> str:
         return f"{self.nombre}"
 
